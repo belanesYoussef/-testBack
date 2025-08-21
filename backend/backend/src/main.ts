@@ -11,11 +11,12 @@ async function bootstrap() {
       transform: true, // auto transform payloads to DTO classes
     }),
   );
-  app.enableCors({
-    origin: 'http://localhost:5173', // allow your frontend
-    credentials: true, // if you send cookies
-  });
+app.enableCors({
+    origin: 'http://localhost:5173', // your frontend URL
+    allowedHeaders: 'Content-Type, Authorization',
+})
 
-  await app.listen(process.env.PORT ?? 3000);
+
+  await app.listen(process.env.PORT ?? 3001);
 }
 bootstrap();

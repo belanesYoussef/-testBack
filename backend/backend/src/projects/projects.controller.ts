@@ -25,13 +25,16 @@ export class ProjectsController {
     return this.projectsService.create(req.user.userId, dto);
   }
 
+  // projects.controller.ts
   @Get()
   findAll(
+    @Req() req: any,
     @Query('page') page: string,
     @Query('limit') limit: string,
     @Query('sort') sort: 'asc' | 'desc' = 'asc',
   ) {
     return this.projectsService.findAll(
+      req.user.userId, // 🔥 pass the logged-in user id
       Number(page) || 1,
       Number(limit) || 10,
       sort,
